@@ -1,0 +1,272 @@
+---
+import '../styles/global.css';
+import { Button } from '../components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { ArrowUpRight, Code2, Palette, Rocket, Layers, Zap } from 'lucide-react';
+
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  tags: string[];
+  link: string;
+  icon: string;
+}
+
+const projects: Project[] = [
+  {
+    id: 'turtelboost',
+    title: 'TurtelBoost',
+    description: 'Eine innovative Boosting-Plattform mit modernem Design und intuitiver Benutzerführung.',
+    tags: ['Astro', 'React', 'TypeScript'],
+    link: '../turtelboost/dist',
+    icon: 'rocket'
+  },
+  {
+    id: 'placeholder-1',
+    title: 'Projekt Alpha',
+    description: 'Kommendes Projekt - demnächst verfügbar.',
+    tags: ['Coming Soon'],
+    link: '#',
+    icon: 'code'
+  },
+  {
+    id: 'placeholder-2',
+    title: 'Projekt Beta',
+    description: 'Kommendes Projekt - demnächst verfügbar.',
+    tags: ['Coming Soon'],
+    link: '#',
+    icon: 'palette'
+  },
+  {
+    id: 'placeholder-3',
+    title: 'Projekt Gamma',
+    description: 'Kommendes Projekt - demnächst verfügbar.',
+    tags: ['Coming Soon'],
+    link: '#',
+    icon: 'layers'
+  }
+];
+
+const getIcon = (name: string) => {
+  const icons: Record<string, string> = {
+    rocket: 'rocket',
+    code: 'code',
+    palette: 'palette',
+    layers: 'layers'
+  };
+  return icons[name] || 'code';
+};
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfolio - Meine erstellten Homepages und Webprojekte" />
+    <title>Portfolio | Meine Webprojekte</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body class="min-h-screen bg-background text-foreground noise-bg overflow-x-hidden">
+    <!-- Background Effects -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+      <div class="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] animate-pulse"></div>
+      <div class="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-pink-600/15 rounded-full blur-[120px] animate-pulse" style="animation-delay: 2s;"></div>
+      <div class="absolute top-[40%] left-[50%] w-[400px] h-[400px] bg-amber-600/10 rounded-full blur-[100px] animate-pulse" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="relative z-10 border-b border-white/5 backdrop-blur-sm sticky top-0 bg-background/80">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+            <Code2 className="w-5 h-5 text-white" />
+          </div>
+          <span class="font-bold text-xl tracking-tight">Portfolio</span>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="#projekte" class="text-muted-foreground hover:text-foreground transition-colors">Projekte</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative z-10 py-24 lg:py-32">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="max-w-4xl">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
+            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+            <span class="text-sm text-muted-foreground">Verfügbare Projekte ansehen</span>
+          </div>
+
+          <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight mb-6">
+            Meine <span class="gradient-text">Homepages</span> & Webprojekte
+          </h1>
+
+          <p class="text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed">
+            Willkommen in meinem Portfolio. Hier finden Sie eine Auswahl meiner erstellten Websites und Webanwendungen.
+            Jedes Projekt wurde mit modernen Technologien und viel Liebe zum Detail entwickelt.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <Button size="lg" asChild>
+              <a href="#projekte">
+                Projekte ansehen
+                <ArrowUpRight className="w-5 h-5" />
+              </a>
+            </Button>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 pt-10 border-t border-white/5">
+          <div class="text-center">
+            <div class="text-4xl font-bold gradient-text mb-2">4+</div>
+            <div class="text-muted-foreground">Projekte</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold gradient-text mb-2">100%</div>
+            <div class="text-muted-foreground">Zufriedenheit</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold gradient-text mb-2">Modern</div>
+            <div class="text-muted-foreground">Tech-Stack</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold gradient-text mb-2">Kreativ</div>
+            <div class="text-muted-foreground">Designs</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projekte" class="relative z-10 py-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16">
+          <div>
+            <h2 class="text-4xl font-bold mb-4">Projekte</h2>
+            <p class="text-muted-foreground max-w-xl">
+              Entdecken Sie meine neuesten Arbeiten. Jedes Projekt ist einzigartig und wurde nach den individuellen Anforderungen gestaltet.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          {projects.map((project, index) => (
+            <a
+              href={project.link}
+              class="group block"
+              style={`animation-delay: ${index * 100}ms`}
+            >
+              <Card className="h-full glass-card hover:glow-purple hover:border-primary/30 transition-all duration-500 hover:-translate-y-2">
+                <CardHeader>
+                  <div class="flex items-start justify-between">
+                    <div class={`w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 ${
+                      project.icon === 'rocket' ? 'bg-gradient-to-br from-purple-500 to-pink-500' :
+                      project.icon === 'code' ? 'bg-gradient-to-br from-blue-500 to-cyan-500' :
+                      project.icon === 'palette' ? 'bg-gradient-to-br from-amber-500 to-orange-500' :
+                      'bg-gradient-to-br from-green-500 to-emerald-500'
+                    }`}>
+                      {project.icon === 'rocket' && <Rocket className="w-6 h-6 text-white" />}
+                      {project.icon === 'code' && <Code2 className="w-6 h-6 text-white" />}
+                      {project.icon === 'palette' && <Palette className="w-6 h-6 text-white" />}
+                      {project.icon === 'layers' && <Layers className="w-6 h-6 text-white" />}
+                    </div>
+                    <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
+                  </div>
+                  <CardTitle className="mt-4 text-2xl group-hover:text-primary transition-colors">
+                    {project.title}
+                  </CardTitle>
+                  <CardDescription className="text-base mt-2">
+                    {project.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div class="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span class="px-3 py-1 text-xs rounded-full bg-white/5 border border-white/10 text-muted-foreground">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="relative z-10 py-20 border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold mb-4">Was ich biete</h2>
+          <p class="text-muted-foreground max-w-2xl mx-auto">
+            Moderne Webentwicklung mit Fokus auf Benutzererfahrung und Performance.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="p-8 rounded-2xl glass-card hover:border-primary/30 transition-all duration-300 group">
+            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <Zap className="w-7 h-7 text-white" />
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Schnelle Performance</h3>
+            <p class="text-muted-foreground">
+              Optimierte Ladezeiten und flüssige Benutzererfahrung durch moderne Frameworks.
+            </p>
+          </div>
+
+          <div class="p-8 rounded-2xl glass-card hover:border-primary/30 transition-all duration-300 group">
+            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <Palette className="w-7 h-7 text-white" />
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Modernes Design</h3>
+            <p class="text-muted-foreground">
+              Ansprechende, zeitgemäße Designs mit Fokus auf Benutzerfreundlichkeit.
+            </p>
+          </div>
+
+          <div class="p-8 rounded-2xl glass-card hover:border-primary/30 transition-all duration-300 group">
+            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <Code2 className="w-7 h-7 text-white" />
+            </div>
+            <h3 class="text-xl font-semibold mb-3">Sauberer Code</h3>
+            <p class="text-muted-foreground">
+              Wartbarer, gut strukturierter Code nach Best Practices.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative z-10 py-8 border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+              <Code2 className="w-4 h-4 text-white" />
+            </div>
+            <span class="font-semibold">Portfolio</span>
+          </div>
+          <p class="text-muted-foreground text-sm">
+            © 2024 Alle Rechte vorbehalten
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <style>
+      body {
+        font-family: 'Outfit', system-ui, sans-serif;
+      }
+    </style>
+  </body>
+</html>
