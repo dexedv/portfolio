@@ -2,12 +2,15 @@
 import '../styles/global.css';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { ArrowUpRight, Code2, Palette, Rocket, Layers, Zap } from 'lucide-react';
+import { ArrowUpRight, Code2, Palette, Rocket, Layers, Zap, Globe } from 'lucide-react';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 
 interface Project {
   id: string;
   title: string;
+  titleEn: string;
   description: string;
+  descriptionEn: string;
   tags: string[];
   link: string;
   icon: string;
@@ -17,7 +20,9 @@ const projects: Project[] = [
   {
     id: 'turtelboost',
     title: 'TurtelBoost',
+    titleEn: 'TurtelBoost',
     description: 'Eine innovative Boosting-Plattform mit modernem Design und intuitiver Benutzerführung.',
+    descriptionEn: 'An innovative boosting platform with modern design and intuitive user guidance.',
     tags: ['Astro', 'React', 'TypeScript'],
     link: '../turtelboost/dist',
     icon: 'rocket'
@@ -25,7 +30,9 @@ const projects: Project[] = [
   {
     id: 'placeholder-1',
     title: 'Projekt Alpha',
+    titleEn: 'Project Alpha',
     description: 'Kommendes Projekt - demnächst verfügbar.',
+    descriptionEn: 'Upcoming project - coming soon.',
     tags: ['Coming Soon'],
     link: '#',
     icon: 'code'
@@ -33,7 +40,9 @@ const projects: Project[] = [
   {
     id: 'placeholder-2',
     title: 'Projekt Beta',
+    titleEn: 'Project Beta',
     description: 'Kommendes Projekt - demnächst verfügbar.',
+    descriptionEn: 'Upcoming project - coming soon.',
     tags: ['Coming Soon'],
     link: '#',
     icon: 'palette'
@@ -41,22 +50,14 @@ const projects: Project[] = [
   {
     id: 'placeholder-3',
     title: 'Projekt Gamma',
+    titleEn: 'Project Gamma',
     description: 'Kommendes Projekt - demnächst verfügbar.',
+    descriptionEn: 'Upcoming project - coming soon.',
     tags: ['Coming Soon'],
     link: '#',
     icon: 'layers'
   }
 ];
-
-const getIcon = (name: string) => {
-  const icons: Record<string, string> = {
-    rocket: 'rocket',
-    code: 'code',
-    palette: 'palette',
-    layers: 'layers'
-  };
-  return icons[name] || 'code';
-};
 ---
 
 <!doctype html>
@@ -65,8 +66,8 @@ const getIcon = (name: string) => {
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio - Meine erstellten Homepages und Webprojekte" />
-    <title>Portfolio | Meine Webprojekte</title>
+    <meta name="description" content="Portfolio - My created homepages and web projects" />
+    <title>Portfolio | My Web Projects</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -89,7 +90,8 @@ const getIcon = (name: string) => {
           <span class="font-bold text-xl tracking-tight">Portfolio</span>
         </div>
         <div class="flex items-center gap-6">
-          <a href="#projekte" class="text-muted-foreground hover:text-foreground transition-colors">Projekte</a>
+          <a href="#projects" class="text-muted-foreground hover:text-foreground transition-colors nav-link" data-en="Projects" data-de="Projekte">Projects</a>
+          <LanguageSwitcher client:load />
         </div>
       </div>
     </nav>
@@ -100,22 +102,21 @@ const getIcon = (name: string) => {
         <div class="max-w-4xl">
           <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
             <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-            <span class="text-sm text-muted-foreground">Verfügbare Projekte ansehen</span>
+            <span class="text-sm text-muted-foreground" data-en="View available projects" data-de="Verfügbare Projekte ansehen">View available projects</span>
           </div>
 
           <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight mb-6">
-            Meine <span class="gradient-text">Homepages</span> & Webprojekte
+            <span data-en="My" data-de="Meine">My</span> <span class="gradient-text">Homepages</span> <span data-en="& Web Projects" data-de="& Webprojekte">& Web Projects</span>
           </h1>
 
-          <p class="text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed">
-            Willkommen in meinem Portfolio. Hier finden Sie eine Auswahl meiner erstellten Websites und Webanwendungen.
-            Jedes Projekt wurde mit modernen Technologien und viel Liebe zum Detail entwickelt.
+          <p class="text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed" data-en="Welcome to my portfolio. Here you will find a selection of my created websites and web applications. Each project was developed with modern technologies and great attention to detail." data-de="Willkommen in meinem Portfolio. Hier finden Sie eine Auswahl meiner erstellten Websites und Webanwendungen. Jedes Projekt wurde mit modernen Technologien und viel Liebe zum Detail entwickelt.">
+            Welcome to my portfolio. Here you will find a selection of my created websites and web applications. Each project was developed with modern technologies and great attention to detail.
           </p>
 
           <div class="flex flex-wrap gap-4">
             <Button size="lg" asChild>
-              <a href="#projekte">
-                Projekte ansehen
+              <a href="#projects">
+                <span data-en="View Projects" data-de="Projekte ansehen">View Projects</span>
                 <ArrowUpRight className="w-5 h-5" />
               </a>
             </Button>
@@ -126,32 +127,32 @@ const getIcon = (name: string) => {
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 pt-10 border-t border-white/5">
           <div class="text-center">
             <div class="text-4xl font-bold gradient-text mb-2">4+</div>
-            <div class="text-muted-foreground">Projekte</div>
+            <div class="text-muted-foreground" data-en="Projects" data-de="Projekte">Projects</div>
           </div>
           <div class="text-center">
             <div class="text-4xl font-bold gradient-text mb-2">100%</div>
-            <div class="text-muted-foreground">Zufriedenheit</div>
+            <div class="text-muted-foreground" data-en="Satisfaction" data-de="Zufriedenheit">Satisfaction</div>
           </div>
           <div class="text-center">
             <div class="text-4xl font-bold gradient-text mb-2">Modern</div>
-            <div class="text-muted-foreground">Tech-Stack</div>
+            <div class="text-muted-foreground" data-en="Tech-Stack" data-de="Tech-Stack">Tech-Stack</div>
           </div>
           <div class="text-center">
-            <div class="text-4xl font-bold gradient-text mb-2">Kreativ</div>
-            <div class="text-muted-foreground">Designs</div>
+            <div class="text-4xl font-bold gradient-text mb-2">Creative</div>
+            <div class="text-muted-foreground" data-en="Designs" data-de="Designs">Designs</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projekte" class="relative z-10 py-20">
+    <section id="projects" class="relative z-10 py-20">
       <div class="max-w-7xl mx-auto px-6">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16">
           <div>
-            <h2 class="text-4xl font-bold mb-4">Projekte</h2>
-            <p class="text-muted-foreground max-w-xl">
-              Entdecken Sie meine neuesten Arbeiten. Jedes Projekt ist einzigartig und wurde nach den individuellen Anforderungen gestaltet.
+            <h2 class="text-4xl font-bold mb-4" data-en="Projects" data-de="Projekte">Projects</h2>
+            <p class="text-muted-foreground max-w-xl" data-en="Discover my latest work. Each project is unique and was designed according to individual requirements." data-de="Entdecken Sie meine neuesten Arbeiten. Jedes Projekt ist einzigartig und wurde nach den individuellen Anforderungen gestaltet.">
+              Discover my latest work. Each project is unique and was designed according to individual requirements.
             </p>
           </div>
         </div>
@@ -179,11 +180,11 @@ const getIcon = (name: string) => {
                     </div>
                     <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
                   </div>
-                  <CardTitle className="mt-4 text-2xl group-hover:text-primary transition-colors">
-                    {project.title}
+                  <CardTitle className="mt-4 text-2xl group-hover:text-primary transition-colors" data-en={project.titleEn} data-de={project.title}>
+                    {project.titleEn}
                   </CardTitle>
-                  <CardDescription className="text-base mt-2">
-                    {project.description}
+                  <CardDescription className="text-base mt-2" data-en={project.descriptionEn} data-de={project.description}>
+                    {project.descriptionEn}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -206,9 +207,9 @@ const getIcon = (name: string) => {
     <section class="relative z-10 py-20 border-t border-white/5">
       <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-16">
-          <h2 class="text-4xl font-bold mb-4">Was ich biete</h2>
-          <p class="text-muted-foreground max-w-2xl mx-auto">
-            Moderne Webentwicklung mit Fokus auf Benutzererfahrung und Performance.
+          <h2 class="text-4xl font-bold mb-4" data-en="What I Offer" data-de="Was ich biete">What I Offer</h2>
+          <p class="text-muted-foreground max-w-2xl mx-auto" data-en="Modern web development with a focus on user experience and performance." data-de="Moderne Webentwicklung mit Fokus auf Benutzererfahrung und Performance.">
+            Modern web development with a focus on user experience and performance.
           </p>
         </div>
 
@@ -217,9 +218,9 @@ const getIcon = (name: string) => {
             <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <Zap className="w-7 h-7 text-white" />
             </div>
-            <h3 class="text-xl font-semibold mb-3">Schnelle Performance</h3>
-            <p class="text-muted-foreground">
-              Optimierte Ladezeiten und flüssige Benutzererfahrung durch moderne Frameworks.
+            <h3 class="text-xl font-semibold mb-3" data-en="Fast Performance" data-de="Schnelle Performance">Fast Performance</h3>
+            <p class="text-muted-foreground" data-en="Optimized load times and smooth user experience through modern frameworks." data-de="Optimierte Ladezeiten und flüssige Benutzererfahrung durch moderne Frameworks.">
+              Optimized load times and smooth user experience through modern frameworks.
             </p>
           </div>
 
@@ -227,9 +228,9 @@ const getIcon = (name: string) => {
             <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <Palette className="w-7 h-7 text-white" />
             </div>
-            <h3 class="text-xl font-semibold mb-3">Modernes Design</h3>
-            <p class="text-muted-foreground">
-              Ansprechende, zeitgemäße Designs mit Fokus auf Benutzerfreundlichkeit.
+            <h3 class="text-xl font-semibold mb-3" data-en="Modern Design" data-de="Modernes Design">Modern Design</h3>
+            <p class="text-muted-foreground" data-en="Appealing, contemporary designs with a focus on usability." data-de="Ansprechende, zeitgemäße Designs mit Fokus auf Benutzerfreundlichkeit.">
+              Appealing, contemporary designs with a focus on usability.
             </p>
           </div>
 
@@ -237,9 +238,9 @@ const getIcon = (name: string) => {
             <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
               <Code2 className="w-7 h-7 text-white" />
             </div>
-            <h3 class="text-xl font-semibold mb-3">Sauberer Code</h3>
-            <p class="text-muted-foreground">
-              Wartbarer, gut strukturierter Code nach Best Practices.
+            <h3 class="text-xl font-semibold mb-3" data-en="Clean Code" data-de="Sauberer Code">Clean Code</h3>
+            <p class="text-muted-foreground" data-en="Maintainable, well-structured code following best practices." data-de="Wartbarer, gut strukturierter Code nach Best Practices.">
+              Maintainable, well-structured code following best practices.
             </p>
           </div>
         </div>
@@ -257,11 +258,44 @@ const getIcon = (name: string) => {
             <span class="font-semibold">Portfolio</span>
           </div>
           <p class="text-muted-foreground text-sm">
-            © 2024 Alle Rechte vorbehalten
+            © 2024 <span data-en="All rights reserved" data-de="Alle Rechte vorbehalten">All rights reserved</span>
           </p>
         </div>
       </div>
     </footer>
+
+    <script>
+      function setLanguage(lang) {
+        localStorage.setItem('language', lang);
+        document.documentElement.lang = lang;
+
+        document.querySelectorAll('[data-en][data-de]').forEach(el => {
+          const enText = el.getAttribute('data-en');
+          const deText = el.getAttribute('data-de');
+          el.textContent = lang === 'de' ? deText : enText;
+        });
+
+        document.querySelectorAll('.nav-link').forEach(el => {
+          const enText = el.getAttribute('data-en');
+          const deText = el.getAttribute('data-de');
+          el.textContent = lang === 'de' ? deText : enText;
+        });
+
+        const langBtn = document.getElementById('lang-btn');
+        if (langBtn) {
+          langBtn.textContent = lang === 'de' ? 'EN' : 'DE';
+        }
+      }
+
+      const savedLang = localStorage.getItem('language') || 'de';
+      setLanguage(savedLang);
+
+      window.toggleLanguage = function() {
+        const currentLang = document.documentElement.lang;
+        const newLang = currentLang === 'de' ? 'en' : 'de';
+        setLanguage(newLang);
+      };
+    </script>
 
     <style>
       body {
