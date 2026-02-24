@@ -1,10 +1,11 @@
 ---
 import '../styles/global.css';
-import { ArrowUpRight, Code2, Palette, Rocket, Layers, Zap } from 'lucide-react';
+import { ArrowUpRight, Zap, Code2, Sun, Moon, Palette } from 'lucide-react';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import ProjectList from '../components/ProjectList';
 import { LanguageProvider } from '../components/LanguageContext';
 import Bubbles from '../components/Bubbles';
+import CookieConsent from '../components/CookieConsent';
 
 interface Project {
   id: string;
@@ -21,13 +22,13 @@ interface Project {
 const projects: Project[] = [
   {
     id: 'turtelboost',
-    title: 'TurtelBoost',
-    titleEn: 'TurtelBoost',
-    description: 'Eine innovative Boosting-Plattform mit modernem Design und intuitiver Benutzerführung.',
-    descriptionEn: 'An innovative boosting platform with modern design and intuitive user guidance.',
-    tags: ['Astro', 'React', 'TypeScript'],
+    title: 'Fahrschule TurtelBoost',
+    titleEn: 'Driving School TurtelBoost',
+    description: 'Moderne Fahrschule Website mit Online-Anmeldung, Preisübersicht und FAQ-Bereich.',
+    descriptionEn: 'Modern driving school website with online registration, price overview and FAQ section.',
+    tags: ['Astro', 'React', 'Tailwind'],
     link: 'http://turtelboost.portfoliodexedv.site/',
-    icon: 'rocket',
+    icon: 'car',
     category: 'web'
   },
   {
@@ -38,7 +39,7 @@ const projects: Project[] = [
     descriptionEn: 'Upcoming project - coming soon.',
     tags: ['Coming Soon'],
     link: '#',
-    icon: 'code',
+    icon: 'terminal',
     category: 'coming'
   },
   {
@@ -49,7 +50,7 @@ const projects: Project[] = [
     descriptionEn: 'Upcoming project - coming soon.',
     tags: ['Coming Soon'],
     link: '#',
-    icon: 'palette',
+    icon: 'sparkles',
     category: 'coming'
   },
   {
@@ -60,7 +61,7 @@ const projects: Project[] = [
     descriptionEn: 'Upcoming project - coming soon.',
     tags: ['Coming Soon'],
     link: '#',
-    icon: 'layers',
+    icon: 'grid',
     category: 'coming'
   }
 ];
@@ -96,8 +97,16 @@ const projects: Project[] = [
           </div>
           <span class="font-bold text-xl tracking-tight">Portfolio</span>
         </div>
-        <div class="flex items-center gap-6">
-          <a href="#projects" class="text-base-content/60 hover:text-base-content transition-colors nav-link" data-en="Projects" data-de="Projekte">Projekte</a>
+        <div class="flex items-center gap-3">
+          <a href="#projects" class="text-base-content/60 hover:text-base-content transition-colors nav-link hidden sm:block" data-en="Projects" data-de="Projekte">Projekte</a>
+          <a href="https://de.fiverr.com/s/XLyY1pZ" target="_blank" rel="noopener noreferrer" class="btn btn-sm gap-2 bg-green-500 hover:bg-green-600 text-white border-none">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 3.465c-.255.448-.79.672-1.253.672H9.61c-.463 0-.998-.224-1.253-.672L6.438 8.248c-.255-.448-.15-.95.233-1.253.382-.302.932-.302 1.315 0l1.48 2.59 1.48-2.59c.383-.302.933-.302 1.315 0 .383.302.488.805.233 1.253z"/></svg>
+            Fiverr
+          </a>
+          <button id="theme-toggle" class="btn btn-sm btn-ghost btn-square">
+            <Sun className="w-5 h-5 dark:hidden" />
+            <Moon className="w-5 h-5 hidden dark:block" />
+          </button>
           <LanguageSwitcher client:load />
         </div>
       </div>
@@ -222,14 +231,42 @@ const projects: Project[] = [
             </div>
             <span class="font-semibold">Portfolio</span>
           </div>
+          <div class="flex gap-6 text-sm">
+            <a href="/impressum" class="text-base-content/60 hover:text-primary transition-colors">Impressum</a>
+            <a href="/datenschutz" class="text-base-content/60 hover:text-primary transition-colors">Datenschutz</a>
+          </div>
           <p class="text-base-content/60 text-sm">
-            © 2024 <span data-en="All rights reserved" data-de="Alle Rechte vorbehalten">Alle Rechte vorbehalten</span>
+            © 2026 Dominic Klügl. <span data-en="All rights reserved" data-de="Alle Rechte vorbehalten">Alle Rechte vorbehalten</span>
           </p>
         </div>
       </div>
     </footer>
 
+    <CookieConsent client:load />
+
     <script>
+      // Theme Toggle
+      function setTheme(theme) {
+        localStorage.setItem('theme', theme);
+        if (theme === 'light') {
+          document.documentElement.classList.add('light');
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        }
+      }
+
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      setTheme(savedTheme);
+
+      document.getElementById('theme-toggle')?.addEventListener('click', () => {
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+      });
+
+      // Language
       function setLanguage(lang) {
         localStorage.setItem('language', lang);
         document.documentElement.lang = lang;

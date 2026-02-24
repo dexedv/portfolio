@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Rocket, Code2, Palette, Layers } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import ProjectCard from './ProjectCard';
 import { useLanguage } from './LanguageContext';

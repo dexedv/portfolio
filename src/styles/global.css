@@ -50,6 +50,30 @@
     --error: 0 62% 50%;
     --radius: 0.75rem;
   }
+
+  html.light {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 10%;
+    --border: 214 14% 85%;
+    --input: 214 14% 85%;
+    --ring: 265 83% 65%;
+    --primary: 265 83% 65%;
+    --primary-content: 0 0% 100%;
+    --secondary: 214 14% 92%;
+    --secondary-content: 222 47% 10%;
+    --accent: 265 83% 65%;
+    --accent-content: 0 0% 100%;
+    --neutral: 214 14% 92%;
+    --neutral-content: 222 47% 10%;
+    --b1: 0 0% 100%;
+    --b2: 214 14% 95%;
+    --b3: 214 14% 92%;
+    --bc: 222 47% 10%;
+    --info: 198 93% 60%;
+    --success: 158 64% 52%;
+    --warning: 43 96% 56%;
+    --error: 0 62% 50%;
+  }
 }
 
 @layer base {
@@ -109,6 +133,15 @@
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+html.light .glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
 .glow-purple {
   box-shadow: 0 0 60px -15px rgba(168, 85, 247, 0.4);
+}
+
+html.light .noise-bg::before {
+  opacity: 0.02;
 }

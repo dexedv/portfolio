@@ -1,0 +1,126 @@
+---
+import '../styles/global.css';
+import { ArrowLeft, Code2 } from 'lucide-react';
+import CookieConsent from '../components/CookieConsent';
+import Bubbles from '../components/Bubbles';
+---
+
+<!doctype html>
+<html lang="de" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Impressum - Portfolio" />
+    <title>Impressum | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body class="min-h-screen bg-base-100 text-base-content noise-bg overflow-x-hidden">
+    <!-- Background Effects -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+      <div class="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] animate-pulse"></div>
+      <div class="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-pink-600/15 rounded-full blur-[120px] animate-pulse" style="animation-delay: 2s;"></div>
+      <Bubbles client:load />
+    </div>
+
+    <!-- Navigation -->
+    <nav class="relative z-10 border-b border-white/5 backdrop-blur-sm sticky top-0 bg-base-100/80">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+            <Code2 className="w-5 h-5 text-white" />
+          </div>
+          <span class="font-bold text-xl tracking-tight">Portfolio</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="/" class="btn btn-sm btn-ghost gap-2">
+            <ArrowLeft className="w-4 h-4" />
+            Zurück
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="relative z-10 py-20">
+      <div class="max-w-3xl mx-auto px-6">
+        <div class="glass-card rounded-2xl p-8 md:p-12">
+          <h1 class="text-4xl font-bold mb-8 gradient-text">Impressum</h1>
+
+          <div class="space-y-8 text-base-content/80">
+            <section>
+              <h2 class="text-xl font-semibold text-base-content mb-4">Angaben gemäß § 5 TMG</h2>
+              <div class="space-y-2">
+                <p><strong>Dominic Klügl</strong></p>
+                <p>E-Mail: <a href="mailto:admin@haincards.de" class="text-primary hover:underline">admin@haincards.de</a></p>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-semibold text-base-content mb-4">Verantwortlich für den Inhalt</h2>
+              <p>Dominic Klügl</p>
+              <p>E-Mail: <a href="mailto:admin@haincards.de" class="text-primary hover:underline">admin@haincards.de</a></p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-semibold text-base-content mb-4">Haftung für Inhalte</h2>
+              <p>Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-semibold text-base-content mb-4">Haftung für Links</h2>
+              <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-semibold text-base-content mb-4">Urheberrecht</h2>
+              <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf dieser Website unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+            </section>
+
+            <section>
+              <h2 class="text-xl font-semibold text-base-content mb-4">Bildnachweis</h2>
+              <p>Die Bilder und Grafiken auf dieser Website wurden selbst erstellt oder von lizenzfreien Quellen (z.B. Unsplash, Pexels) bezogen.</p>
+            </section>
+
+            <section class="pt-4 border-t border-white/10">
+              <p class="text-sm text-base-content/60">
+                Stand: Februar 2026
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 py-8 border-t border-white/5 bg-base-200/50">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+              <Code2 className="w-4 h-4 text-white" />
+            </div>
+            <span class="font-semibold">Portfolio</span>
+          </div>
+          <div class="flex gap-6 text-sm">
+            <a href="/impressum" class="hover:text-primary transition-colors">Impressum</a>
+            <a href="/datenschutz" class="hover:text-primary transition-colors">Datenschutz</a>
+          </div>
+          <p class="text-base-content/60 text-sm">
+            © 2026 Dominic Klügl. Alle Rechte vorbehalten.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <CookieConsent client:load />
+
+    <style>
+      body {
+        font-family: 'Outfit', system-ui, sans-serif;
+      }
+    </style>
+  </body>
+</html>

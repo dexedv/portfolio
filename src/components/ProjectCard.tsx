@@ -1,4 +1,4 @@
-import { ArrowUpRight, Rocket, Code2, Palette, Layers } from 'lucide-react';
+import { ArrowUpRight, Sparkles, Terminal, Palette, LayoutGrid, Car } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { useLanguage } from './LanguageContext';
@@ -20,22 +20,24 @@ interface ProjectCardProps {
 }
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  rocket: Rocket,
-  code: Code2,
+  sparkles: Sparkles,
+  terminal: Terminal,
   palette: Palette,
-  layers: Layers,
+  grid: LayoutGrid,
+  car: Car,
 };
 
 const gradientMap: Record<string, string> = {
-  rocket: 'from-purple-500 to-pink-500',
-  code: 'from-blue-500 to-cyan-500',
+  sparkles: 'from-purple-500 to-pink-500',
+  terminal: 'from-blue-500 to-cyan-500',
   palette: 'from-amber-500 to-orange-500',
-  layers: 'from-green-500 to-emerald-500',
+  grid: 'from-green-500 to-emerald-500',
+  car: 'from-violet-500 to-purple-500',
 };
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   const { isEnglish } = useLanguage();
-  const Icon = iconMap[project.icon] || Code2;
+  const Icon = iconMap[project.icon] || Terminal;
   const gradient = gradientMap[project.icon] || 'from-purple-500 to-pink-500';
   const title = isEnglish ? project.titleEn : project.title;
   const description = isEnglish ? project.descriptionEn : project.description;
