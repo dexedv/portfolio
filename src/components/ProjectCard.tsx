@@ -1,4 +1,4 @@
-import { ArrowUpRight, Sparkles, Terminal, Palette, LayoutGrid, Car } from 'lucide-react';
+import { ArrowUpRight, Sparkles, Terminal, Palette, LayoutGrid, Car, Utensils } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { useLanguage } from './LanguageContext';
@@ -25,6 +25,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   palette: Palette,
   grid: LayoutGrid,
   car: Car,
+  utensils: Utensils,
 };
 
 const gradientMap: Record<string, string> = {
@@ -33,6 +34,7 @@ const gradientMap: Record<string, string> = {
   palette: 'from-amber-500 to-orange-500',
   grid: 'from-green-500 to-emerald-500',
   car: 'from-violet-500 to-purple-500',
+  utensils: 'from-orange-500 to-red-500',
 };
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
