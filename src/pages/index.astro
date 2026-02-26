@@ -1,8 +1,7 @@
 ---
 import '../styles/global.css';
-import { ArrowUpRight, Zap, Code2, Sun, Moon, Palette } from 'lucide-react';
+import { ArrowUpRight, Zap, Code2, Sun, Moon, Palette, ChevronLeft, ChevronRight } from 'lucide-react';
 import LanguageSwitcher from '../components/LanguageSwitcher';
-import ProjectList from '../components/ProjectList';
 import { LanguageProvider } from '../components/LanguageContext';
 import Bubbles from '../components/Bubbles';
 import CookieConsent from '../components/CookieConsent';
@@ -76,6 +75,15 @@ const projects: Project[] = [
     category: 'coming'
   }
 ];
+
+const gradientMap: Record<string, string> = {
+  sparkles: 'from-purple-500 to-pink-500',
+  terminal: 'from-blue-500 to-cyan-500',
+  palette: 'from-amber-500 to-orange-500',
+  grid: 'from-green-500 to-emerald-500',
+  car: 'from-violet-500 to-purple-500',
+  utensils: 'from-orange-500 to-red-500',
+};
 ---
 
 <!doctype html>
@@ -83,14 +91,82 @@ const projects: Project[] = [
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://portfoliodexedv.site/" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio - Meine erstellten Homepages und Webprojekte" />
-    <title>Portfolio | Meine Webprojekte</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Primary Meta Tags -->
+    <title>Portfolio | Dominic Klügl - Webentwickler & Designer</title>
+    <meta name="title" content="Portfolio | Dominic Klügl - Webentwickler & Designer" />
+    <meta name="description" content="Willkommen in meinem Portfolio. Moderne, benutzerfreundliche Websites und Webanwendungen mit Astro, React und Tailwind. Jetzt ansehen!" />
+    <meta name="author" content="Dominic Klügl" />
+    <meta name="keywords" content="Webentwicklung, Webdesign, Portfolio, Astro, React, Tailwind, HTML, CSS, JavaScript, Homepage erstellen, Fiverr" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="German, English" />
+    <meta name="revisit-after" content="7 days" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://portfoliodexedv.site/" />
+    <meta property="og:title" content="Portfolio | Dominic Klügl - Webentwickler" />
+    <meta property="og:description" content="Moderne Websites und Webanwendungen mit modernen Technologien. Entdecken Sie meine Projekte!" />
+    <meta property="og:image" content="https://portfoliodexedv.site/og-image.png" />
+    <meta property="og:site_name" content="Dominic Klügl Portfolio" />
+    <meta property="og:locale" content="de_DE" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://portfoliodexedv.site/" />
+    <meta property="twitter:title" content="Portfolio | Dominic Klügl - Webentwickler" />
+    <meta property="twitter:description" content="Moderne Websites und Webanwendungen mit modernen Technologien. Entdecken Sie meine Projekte!" />
+    <meta property="twitter:image" content="https://portfoliodexedv.site/og-image.png" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#a855f7" />
+    <meta name="msapplication-TileColor" content="#a855f7" />
+
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" as="style" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" />
+
+    <!-- hreflang for multilingual SEO -->
+    <link rel="alternate" hreflang="de" href="https://portfoliodexedv.site/" />
+    <link rel="alternate" hreflang="en" href="https://portfoliodexedv.site/" />
+    <link rel="alternate" hreflang="x-default" href="https://portfoliodexedv.site/" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Dominic Klügl",
+      "url": "https://portfoliodexedv.site",
+      "jobTitle": "Webentwickler",
+      "description": "Moderne Websites und Webanwendungen mit Astro, React und Tailwind",
+      "sameAs": [
+        "https://de.fiverr.com/s/XLyY1pZ"
+      ],
+      "knowsAbout": ["Astro", "React", "Tailwind", "TypeScript", "JavaScript", "HTML", "CSS"]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Dominic Klügl Portfolio",
+      "url": "https://portfoliodexedv.site",
+      "description": "Portfolio eines Webentwicklers mit modernen Technologien"
+    }
+    </script>
   </head>
   <body class="min-h-screen bg-base-100 text-base-content noise-bg overflow-x-hidden">
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-white">
+      <span data-en="Skip to main content" data-de="Zum Hauptinhalt springen">Zum Hauptinhalt springen</span>
+    </a>
+
     <!-- Background Effects -->
     <div class="fixed inset-0 pointer-events-none overflow-hidden">
       <div class="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] animate-pulse"></div>
@@ -100,7 +176,7 @@ const projects: Project[] = [
     </div>
 
     <!-- Navigation -->
-    <nav class="relative z-10 border-b border-white/5 backdrop-blur-sm sticky top-0 bg-base-100/80">
+    <nav class="relative z-10 border-b border-white/5 backdrop-blur-sm sticky top-0 bg-base-100/80" role="navigation" aria-label="Hauptnavigation">
       <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
@@ -109,12 +185,12 @@ const projects: Project[] = [
           <span class="font-bold text-xl tracking-tight">Portfolio</span>
         </div>
         <div class="flex items-center gap-3">
-          <a href="#projects" class="text-base-content/60 hover:text-base-content transition-colors nav-link hidden sm:block" data-en="Projects" data-de="Projekte">Projekte</a>
+          <a href="#projects" class="text-base-content/60 hover:text-base-content transition-colors nav-link hidden sm:block" data-en="Projects" data-de="Projekte" aria-label="Zu den Projekten scrollen">Projekte</a>
           <a href="https://de.fiverr.com/s/XLyY1pZ" target="_blank" rel="noopener noreferrer" class="btn btn-sm gap-2 bg-green-500 hover:bg-green-600 text-white border-none">
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-1.97 3.465c-.255.448-.79.672-1.253.672H9.61c-.463 0-.998-.224-1.253-.672L6.438 8.248c-.255-.448-.15-.95.233-1.253.382-.302.932-.302 1.315 0l1.48 2.59 1.48-2.59c.383-.302.933-.302 1.315 0 .383.302.488.805.233 1.253z"/></svg>
             Fiverr
           </a>
-          <button id="theme-toggle" class="btn btn-sm btn-ghost btn-square">
+          <button id="theme-toggle" class="btn btn-sm btn-ghost btn-square" aria-label="Design wechseln">
             <Sun className="w-5 h-5 dark:hidden" />
             <Moon className="w-5 h-5 hidden dark:block" />
           </button>
@@ -124,7 +200,7 @@ const projects: Project[] = [
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative z-10 py-24 lg:py-32">
+    <section class="relative z-10 py-24 lg:py-32" role="region" aria-labelledby="hero-heading">
       <div class="max-w-7xl mx-auto px-6">
         <div class="max-w-4xl">
           <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-base-300 border border-white/10 mb-8">
@@ -132,7 +208,7 @@ const projects: Project[] = [
             <span class="text-sm text-base-content/60" data-en="View available projects" data-de="Verfügbare Projekte ansehen">Verfügbare Projekte ansehen</span>
           </div>
 
-          <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight mb-6">
+          <h1 id="hero-heading" class="text-5xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight mb-6">
             <span data-en="My" data-de="Meine">Meine</span> <span class="gradient-text">Homepages</span> <span data-en="& Web Projects" data-de="& Webprojekte">& Webprojekte</span>
           </h1>
 
@@ -171,20 +247,56 @@ const projects: Project[] = [
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="relative z-10 py-20">
+    <section id="projects" class="relative z-10 py-20" role="main" aria-labelledby="projects-heading">
       <div class="max-w-7xl mx-auto px-6">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16">
           <div>
-            <h2 class="text-4xl font-bold mb-4" data-en="Projects" data-de="Projekte">Projekte</h2>
+            <h2 id="projects-heading" class="text-4xl font-bold mb-4" data-en="Projects" data-de="Projekte">Projekte</h2>
             <p class="text-base-content/60 max-w-xl" data-en="Discover my latest work. Each project is unique and was designed according to individual requirements." data-de="Entdecken Sie meine neuesten Arbeiten. Jedes Projekt ist einzigartig und wurde nach den individuellen Anforderungen gestaltet.">
               Entdecken Sie meine neuesten Arbeiten. Jedes Projekt ist einzigartig und wurde nach den individuellen Anforderungen gestaltet.
             </p>
           </div>
         </div>
 
-        <LanguageProvider client:only="react">
-          <ProjectList projects={projects} />
-        </LanguageProvider>
+        <!-- HTML Carousel -->
+        <div class="relative" id="carousel-container" role="region" aria-label="Projekt-Karussell" aria-roledescription="carousel">
+          <!-- Left Button -->
+          <button id="carousel-left" class="absolute left-0 top-1/2 -translate-y-1/2 z-20 btn btn-circle btn-sm bg-base-200 border border-white/10 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-base-100" style="left: -20px;" aria-label="Vorheriges Projekt" aria-controls="carousel-track">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+
+          <!-- Carousel Track -->
+          <div id="carousel-track" class="overflow-x-auto scrollbar-hide pb-4 px-8" style="scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none;" role="group" aria-label="Projekte" aria-roledescription="slide" tabindex="0">
+            <div class="flex gap-6" style="width: max-content;">
+              {projects.map((project, index) => (
+                <a href={project.link} class="block w-[320px] md:w-[380px] flex-shrink-0" style={`animation-delay: ${index * 100}ms`}>
+                  <div class="card bg-base-200 border border-white/5 hover:-translate-y-2 transition-all duration-300 h-full">
+                    <div class="card-body">
+                      <div class="flex items-start justify-between">
+                        <div class={`w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br ${gradientMap[project.icon] || 'from-purple-500 to-pink-500'}`}>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-base-content/60"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+                      </div>
+                      <h3 class="card-title mt-4 group-hover:text-primary transition-colors text-lg">{project.title}</h3>
+                      <p class="text-base-content/60 text-sm">{project.description}</p>
+                      <div class="flex flex-wrap gap-2 mt-2">
+                        {project.tags.map((tag) => (
+                          <span class="badge badge-secondary badge-sm">{tag}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <!-- Right Button -->
+          <button id="carousel-right" class="absolute right-0 top-1/2 -translate-y-1/2 z-20 btn btn-circle btn-sm bg-base-200 border border-white/10 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-base-100" style="right: -20px;" aria-label="Nächstes Projekt" aria-controls="carousel-track">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -233,7 +345,7 @@ const projects: Project[] = [
     </section>
 
     <!-- Footer -->
-    <footer class="relative z-10 py-8 border-t border-white/5 bg-base-200/50">
+    <footer class="relative z-10 py-8 border-t border-white/5 bg-base-200/50" role="contentinfo">
       <div class="max-w-7xl mx-auto px-6">
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
           <div class="flex items-center gap-3">
@@ -243,8 +355,8 @@ const projects: Project[] = [
             <span class="font-semibold">Portfolio</span>
           </div>
           <div class="flex gap-6 text-sm">
-            <a href="/impressum" class="text-base-content/60 hover:text-primary transition-colors">Impressum</a>
-            <a href="/datenschutz" class="text-base-content/60 hover:text-primary transition-colors">Datenschutz</a>
+            <a href="/impressum" class="text-base-content/60 hover:text-primary transition-colors" aria-label="Zum Impressum">Impressum</a>
+            <a href="/datenschutz" class="text-base-content/60 hover:text-primary transition-colors" aria-label="Zur Datenschutzerklärung">Datenschutz</a>
           </div>
           <p class="text-base-content/60 text-sm">
             © 2026 Dominic Klügl. <span data-en="All rights reserved" data-de="Alle Rechte vorbehalten">Alle Rechte vorbehalten</span>
@@ -256,6 +368,65 @@ const projects: Project[] = [
     <CookieConsent client:load />
 
     <script>
+      // Carousel Logic
+      const track = document.getElementById('carousel-track');
+      const leftBtn = document.getElementById('carousel-left');
+      const rightBtn = document.getElementById('carousel-right');
+      const scrollAmount = 380;
+
+      leftBtn?.addEventListener('click', () => {
+        if (track) {
+          track.scrollLeft -= scrollAmount;
+        }
+      });
+
+      rightBtn?.addEventListener('click', () => {
+        if (track) {
+          track.scrollLeft += scrollAmount;
+        }
+      });
+
+      // Keyboard navigation for carousel
+      track?.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+          track.scrollLeft -= scrollAmount;
+          e.preventDefault();
+        } else if (e.key === 'ArrowRight') {
+          track.scrollLeft += scrollAmount;
+          e.preventDefault();
+        }
+      });
+
+      // Auto scroll
+      let autoScrollInterval = setInterval(() => {
+        if (track) {
+          const maxScroll = track.scrollWidth - track.clientWidth;
+          if (track.scrollLeft >= maxScroll - 10) {
+            track.scrollLeft = 0;
+          } else {
+            track.scrollLeft += scrollAmount;
+          }
+        }
+      }, 4000);
+
+      // Stop auto scroll on user interaction
+      track?.addEventListener('mouseenter', () => {
+        clearInterval(autoScrollInterval);
+      });
+
+      track?.addEventListener('mouseleave', () => {
+        autoScrollInterval = setInterval(() => {
+          if (track) {
+            const maxScroll = track.scrollWidth - track.clientWidth;
+            if (track.scrollLeft >= maxScroll - 10) {
+              track.scrollLeft = 0;
+            } else {
+              track.scrollLeft += scrollAmount;
+            }
+          }
+        }, 4000);
+      });
+
       // Theme Toggle
       function setTheme(theme) {
         localStorage.setItem('theme', theme);
@@ -314,6 +485,19 @@ const projects: Project[] = [
     <style>
       body {
         font-family: 'Outfit', system-ui, sans-serif;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      /* Focus visible styles for accessibility */
+      :focus-visible {
+        outline: 2px solid #a855f7;
+        outline-offset: 2px;
+      }
+      /* Ensure smooth focus transitions */
+      a:focus-visible,
+      button:focus-visible {
+        transition: outline-color 0.2s ease;
       }
     </style>
   </body>

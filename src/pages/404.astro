@@ -1,0 +1,125 @@
+---
+import '../styles/global.css';
+import { ArrowLeft, Code2, Home, Search } from 'lucide-react';
+import CookieConsent from '../components/CookieConsent';
+import Bubbles from '../components/Bubbles';
+---
+
+<!doctype html>
+<html lang="de" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://portfoliodexedv.site/404" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>404 - Seite nicht gefunden | Dominic Klügl Portfolio</title>
+    <meta name="title" content="404 - Seite nicht gefunden | Dominic Klügl Portfolio" />
+    <meta name="description" content="Die gesuchte Seite wurde nicht gefunden. Zurück zum Portfolio." />
+    <meta name="robots" content="noindex, follow" />
+    <meta name="theme-color" content="#a855f7" />
+
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" as="style" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" />
+
+    <!-- hreflang for multilingual SEO -->
+    <link rel="alternate" hreflang="de" href="https://portfoliodexedv.site/404" />
+    <link rel="alternate" hreflang="en" href="https://portfoliodexedv.site/404" />
+    <link rel="alternate" hreflang="x-default" href="https://portfoliodexedv.site/404" />
+  </head>
+  <body class="min-h-screen bg-base-100 text-base-content noise-bg overflow-x-hidden">
+    <!-- Background Effects -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden">
+      <div class="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] animate-pulse"></div>
+      <div class="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-pink-600/15 rounded-full blur-[120px] animate-pulse" style="animation-delay: 2s;"></div>
+      <Bubbles client:load />
+    </div>
+
+    <!-- Navigation -->
+    <nav class="relative z-10 border-b border-white/5 backdrop-blur-sm sticky top-0 bg-base-100/80" role="navigation" aria-label="Hauptnavigation">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+            <Code2 className="w-5 h-5 text-white" />
+          </div>
+          <span class="font-bold text-xl tracking-tight">Portfolio</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="/" class="btn btn-sm btn-ghost gap-2">
+            <ArrowLeft className="w-4 h-4" />
+            Zurück
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 404 Content -->
+    <main class="relative z-10 py-24 lg:py-32" role="main" aria-labelledby="error-heading">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <!-- Big 404 Number -->
+        <div class="relative mb-8">
+          <span class="text-[200px] lg:text-[300px] font-extrabold gradient-text leading-none select-none">404</span>
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-purple-500/20 rounded-full blur-[80px]"></div>
+        </div>
+
+        <div class="glass-card rounded-2xl p-8 md:p-12 max-w-2xl mx-auto">
+          <h1 id="error-heading" class="text-4xl lg:text-5xl font-bold mb-6 gradient-text">Seite nicht gefunden</h1>
+
+          <p class="text-xl text-base-content/60 mb-8">
+            Die Seite, die Sie suchen, existiert möglicherweise nicht mehr oder wurde verschoben.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/" class="btn btn-primary btn-lg gap-2">
+              <Home className="w-5 h-5" />
+              Zurück zur Startseite
+            </a>
+            <a href="/#projects" class="btn btn-outline btn-lg gap-2">
+              <Search className="w-5 h-5" />
+              Projekte ansehen
+            </a>
+          </div>
+        </div>
+
+        <!-- Helpful Links -->
+        <div class="mt-12 flex flex-wrap justify-center gap-6 text-base-content/60">
+          <a href="/impressum" class="hover:text-primary transition-colors underline underline-offset-4">Impressum</a>
+          <a href="/datenschutz" class="hover:text-primary transition-colors underline underline-offset-4">Datenschutz</a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 py-8 border-t border-white/5 bg-base-200/50" role="contentinfo">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+              <Code2 className="w-4 h-4 text-white" />
+            </div>
+            <span class="font-semibold">Portfolio</span>
+          </div>
+          <p class="text-base-content/60 text-sm">
+            © 2026 Dominic Klügl. Alle Rechte vorbehalten.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <CookieConsent client:load />
+
+    <style>
+      body {
+        font-family: 'Outfit', system-ui, sans-serif;
+      }
+      :focus-visible {
+        outline: 2px solid #a855f7;
+        outline-offset: 2px;
+      }
+    </style>
+  </body>
+</html>
